@@ -4,32 +4,37 @@
  */
 package Conceptos;
 
+import Conceptos.Servicio;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author fuent
  */
-public class Veterinario {
+public class Veterinario implements Serializable{
+    
+    
     
     //Atributos
+    private static final long serialVersionUID = 1L; //para que no de errores
+    
     private String identificacion;
     private String nombre;
     private String puesto;
+    private String telefono;
     private ArrayList<Servicio> listaServicios = new ArrayList();
     
     //Constructor
+
     public Veterinario() {
+        this.identificacion = "";
+        this.nombre = "";
+        this.puesto = "";
+        this.telefono = "";
     }
     
-    //Añadir y eliminar servicio
-    public void AñadirServicio(Servicio servicio){
-        this.listaServicios.add(servicio);
-    }
     
-    public void EliminarServicio(Servicio servicio){
-        this.listaServicios.remove(servicio);
-    }
     
     //Getters and setters
     public String getIdentificacion() {
@@ -56,7 +61,23 @@ public class Veterinario {
         this.puesto = puesto;
     }
 
-    public ArrayList<Servicio> getListaServicios() {
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    
+    //toString
+    @Override
+    public String toString() {
+        return  nombre;
+    }
+    
+    //NO SE SI SE DEBE ELIMINAR LSITA SERVICIOS
+    
+   public ArrayList<Servicio> getListaServicios() {
         return listaServicios;
     }
 
@@ -64,11 +85,12 @@ public class Veterinario {
         this.listaServicios = listaServicios;
     }
     
-    //toString
-    @Override
-    public String toString() {
-        return "Veterinario{" + "identificacion=" + identificacion + ", nombre=" + nombre + ", puesto=" + puesto + ", listaServicios=" + listaServicios + '}';
+    //Añadir y eliminar servicio
+    public void AñadirServicio(Servicio servicio){
+        this.listaServicios.add(servicio);
     }
     
-    
+    public void EliminarServicio(Servicio servicio){
+        this.listaServicios.remove(servicio);
+    }
 }
