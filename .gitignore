@@ -22,3 +22,13 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+/dist/
+
+# NetBeans build and local private config
+build/
+nbproject/private/
+
+# Generated binary data files during development
+Data/*.DAT
+Data/*.dat
+
