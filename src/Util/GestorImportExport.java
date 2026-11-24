@@ -15,17 +15,17 @@ import java.util.ArrayList;
  * @author fuent
  */
 public class GestorImportExport {
-    void exportarTodo(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Veterinario> veterinarios, ArrayList<Cita> citas){
+    public static void exportarTodo(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Veterinario> veterinarios, ArrayList<Cita> citas){
         
     }
 
   
-    void importarTodo(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Veterinario> veterinarios, ArrayList<Cita> citas){
+    public static void importarTodo(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Veterinario> veterinarios, ArrayList<Cita> citas){
         
     }
 
   
-    void limpiarTodo(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Veterinario> veterinarios, ArrayList<Cita> citas){
+    public static void limpiarTodo(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Veterinario> veterinarios, ArrayList<Cita> citas){
         
     }
 }
