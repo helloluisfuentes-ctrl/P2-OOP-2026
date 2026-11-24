@@ -4,13 +4,18 @@
  */
 package Conceptos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author fuent
  */
-public class Cliente {
+public class Cliente implements Serializable{
     
     //Atributos
+    
+    private static final long serialVersionUID = 1L; //para que no de errores
+    
     private String identificacion;
     private String nombre;
     private String propietario;
@@ -18,8 +23,15 @@ public class Cliente {
     private String email;
 
     //Constructor
+
     public Cliente() {
+        this.identificacion = "";
+        this.nombre = "";
+        this.propietario = "";
+        this.telefono = "";
+        this.email = "";
     }
+    
 
     //getters and setters
     public String getIdentificacion() {
@@ -65,7 +77,7 @@ public class Cliente {
     //toString
     @Override
     public String toString() {
-        return "Cliente{" + "identificacion=" + identificacion + ", nombre=" + nombre + ", propietario=" + propietario + ", telefono=" + telefono + ", email=" + email + '}';
+        return identificacion + " - " + nombre;
     }
     
     

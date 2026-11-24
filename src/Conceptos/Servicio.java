@@ -4,20 +4,29 @@
  */
 package Conceptos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author fuent
  */
-public class Servicio {
+public class Servicio implements Serializable {
     
     //Atributos
+    private static final long serialVersionUID = 1L; //para que no de errores
+    
     private String identificacion;
     private String nombre;
     private String precio;
 
     //Constructor
+
     public Servicio() {
+        this.identificacion = "";
+        this.nombre = "";
+        this.precio = "";
     }
+    
     
     //Getters and setters
     public String getIdentificacion() {
