@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<citas>
+    <cita id="100">
+        <cliente_id>300001111</cliente_id>
+        <fecha>01-11-2026</fecha>
+        <veterinario_id>200</veterinario_id>
+        <observaciones>Presenta decaimiento y falta de apetito desde ayer.</observaciones>
+        <diagnosticos>
+            <diagnostico>Perdida de apetito</diagnostico>
+            <diagnostico>Mal de estomago</diagnostico>
+        </diagnosticos>
+        <tratamientos>
+            <tratamiento>Vacuna fiebre de perrera</tratamiento>
+            <tratamiento>Suero 500ml</tratamiento>
+        </tratamientos>
+    </cita>
+    <cita id="101">
+        <cliente_id>300002222</cliente_id>
+        <fecha>02-11-2026</fecha>
+        <veterinario_id>201</veterinario_id>
+        <observaciones>Control anual y revision de vacunas.</observaciones>
+        <diagnosticos>
+            <diagnostico>Estado de salud estable</diagnostico>
+        </diagnosticos>
+        <tratamientos>
+            <tratamiento>Refuerzo vacuna antirrabica</tratamiento>
+            <tratamiento>Desparasitante oral</tratamiento>
+        </tratamientos>
+    </cita>
+    <cita id="102">
+        <cliente_id>300003333</cliente_id>
+        <fecha>02-11-2026</fecha>
+        <veterinario_id></veterinario_id>
+        <observaciones>Cojera leve en pata trasera derecha despues de correr.</observaciones>
+        <diagnosticos>
+        </diagnosticos>
+        <tratamientos>
+        </tratamientos>
+    </cita>
+</citas>
