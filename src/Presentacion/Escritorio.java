@@ -260,8 +260,16 @@ public class Escritorio extends javax.swing.JFrame {
     }
 
     private void buttonAtenderActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO Paso 4: abrir ventana de atender cita
-        JOptionPane.showMessageDialog(this, "Ventana Atender Cita pendiente (Paso 4)");
+        //validar que existan citas registradas
+        if (this.listaCitas == null || this.listaCitas.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay citas registradas para atender");
+            return;
+        }
+
+        //abrir ventana de atender cita
+        VentanaAtenderCita ventana = new VentanaAtenderCita(this, true, this.listaCitas, this.listaVeterinarios);
+        ventana.setLocationRelativeTo(this);
+        ventana.setVisible(true);
     }
 
     private void buttonVeterinariosActionPerformed(java.awt.event.ActionEvent evt) {
