@@ -253,8 +253,10 @@ public class Escritorio extends javax.swing.JFrame {
     }
 
     private void buttonSolicitarActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO Paso 3: abrir ventana de crear cita
-        JOptionPane.showMessageDialog(this, "Ventana Solicitar Cita pendiente (Paso 3)");
+        //abrir ventana de crear cita
+        VentanaCrearCita ventana = new VentanaCrearCita(this, true, this.listaCitas, this.listaClientes);
+        ventana.setLocationRelativeTo(this);
+        ventana.setVisible(true);
     }
 
     private void buttonAtenderActionPerformed(java.awt.event.ActionEvent evt) {
