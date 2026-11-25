@@ -246,8 +246,10 @@ public class Escritorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonConsultarActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO Paso 2: abrir ventana de consultar citas
-        JOptionPane.showMessageDialog(this, "Ventana Consultar Citas pendiente (Paso 2)");
+        //abrir ventana de consultar citas
+        VentanaConsultarCitas ventana = new VentanaConsultarCitas(this, true, this.listaCitas);
+        ventana.setLocationRelativeTo(this);
+        ventana.setVisible(true);
     }
 
     private void buttonSolicitarActionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,7 +287,7 @@ public class Escritorio extends javax.swing.JFrame {
         //confirmar exportacion
         int confirm = JOptionPane.showConfirmDialog(
             this,
-            "¿Está seguro de que desea exportar los datos a los archivos XML?\nEsto sobrescribirá los archivos XML actuales.",
+            "Confirme si desea exportar los datos a los archivos XML.\nEsto sobrescribirá los archivos XML actuales.",
             "Confirmar exportación",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE
@@ -303,7 +305,7 @@ public class Escritorio extends javax.swing.JFrame {
         //confirmar importacion
         int confirm = JOptionPane.showConfirmDialog(
             this,
-            "¿Está seguro de que desea importar los datos desde los archivos XML?\nEsto reemplazará todos los datos actuales.",
+            "Confirme si desea importar los datos desde los archivos XML.\nEsto reemplazará todos los datos actuales.",
             "Confirmar importación",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE
@@ -321,7 +323,7 @@ public class Escritorio extends javax.swing.JFrame {
         //confirmar limpieza
         int confirm = JOptionPane.showConfirmDialog(
             this,
-            "¿Está seguro de que desea limpiar todos los datos y archivos .DAT?\nEsta acción no se puede deshacer.",
+            "Confirme si desea limpiar todos los datos y archivos .DAT.\nEsta acción no se puede deshacer.",
             "Confirmar limpieza",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE
