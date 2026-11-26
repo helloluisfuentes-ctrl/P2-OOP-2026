@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0" version="24.7.17">
+  <diagram id="caso-uso-solicitar" name="Caso de Uso - Solicitar Cita">
+    <mxGraphModel dx="1050" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sys-1" value="Veterinaria Plus - Solicitar Cita" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="125" y="45" width="665" height="475" as="geometry" />
+        </mxCell>
+        <mxCell id="act-1" value="Usuario" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="45" y="238" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc-solicitar" value="Solicitar Cita" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="185" y="240" width="135" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc-cliente" value="Seleccionar Cliente" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="105" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc-nuevo-cli" value="Agregar nuevo cliente" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="625" y="95" width="140" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc-guardar" value="Guardar cita en CITAS.DAT" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="455" y="245" width="150" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc-confirmar" value="Mostrar numero de cita" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="385" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc-obs" value="Agregar observaciones" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="195" y="395" width="145" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-user" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="act-1" target="uc-solicitar">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-inc-cli" value="&lt;&lt;include&gt;&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="uc-solicitar" target="uc-cliente">
+          <mxGeometry width="160" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-inc-save" value="&lt;&lt;include&gt;&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="uc-solicitar" target="uc-guardar">
+          <mxGeometry width="160" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-inc-conf" value="&lt;&lt;include&gt;&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="uc-solicitar" target="uc-confirmar">
+          <mxGeometry width="160" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ext-cli" value="&lt;&lt;extend&gt;&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="uc-nuevo-cli" target="uc-cliente">
+          <mxGeometry width="160" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ext-obs" value="&lt;&lt;extend&gt;&gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="uc-obs" target="uc-solicitar">
+          <mxGeometry width="160" relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
