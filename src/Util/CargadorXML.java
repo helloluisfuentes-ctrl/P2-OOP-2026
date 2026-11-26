@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Util;
 
-import Conceptos.Veterinario;
+import Conceptos.Cita;
 import Conceptos.Cliente;
 import Conceptos.Servicio;
-import Util.SAXHandlerVeterinario;
-import Util.SAXHandlerServicio;
-import Util.SAXHandlerCliente;
+import Conceptos.Veterinario;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -21,89 +15,101 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 /**
- * Clase utilitaria para parsear y cargar información desde un archivo XML.
- * 
+ * Clase utilitaria para parsear y cargar información desde archivos XML con SAX.
+ *
  * @author fuent
  */
 public class CargadorXML {
-    
-    /**
-     * Lee un flujo XML y extrae una lista de objetos utilizando SAX.
-     * 
-     * @param archivo Flujo de entrada (InputStream) del archivo XML.
-     * @return Lista de objetos obtenidas del XML.
-     */
-    
-    
-    public static ArrayList<Veterinario> cargarListaVeterinarios(InputStream archivo, ArrayList<Servicio> listaServicios){
-        ArrayList<Veterinario> listaVeterinarios = new ArrayList();
-        
+
+    public static ArrayList<Veterinario> cargarListaVeterinarios(InputStream archivo) {
+        ArrayList<Veterinario> listaVeterinarios = new ArrayList<>();
+
         try {
             InputSource original = new InputSource(archivo);
-            SAXHandlerVeterinario handler = new SAXHandlerVeterinario(listaServicios);
-            
-            // Configuración del parser SAX
+            SAXHandlerVeterinario handler = new SAXHandlerVeterinario();
+
+            // configuración del parser SAX
             SAXParserFactory categoria = SAXParserFactory.newInstance();
             SAXParser parser = categoria.newSAXParser();
             XMLReader lector = parser.getXMLReader();
-            
-            // Asigna el manejador de eventos y parsea el archivo
+
+            // asigna el manejador de eventos y parsea el archivo
             lector.setContentHandler(handler);
             lector.parse(original);
-            
-            // Obtiene los objetos procesados por el manejador
+
             listaVeterinarios = handler.getListaVeterinarios();
-        } catch (IOException | SAXException | ParserConfigurationException ex){
+        } catch (IOException | SAXException | ParserConfigurationException ex) {
             ex.printStackTrace();
-        } 
+        }
         return listaVeterinarios;
     }
-    
-    public static ArrayList<Servicio> cargarListaServicios(InputStream archivo){
-        ArrayList<Servicio> listaServicios = new ArrayList();
-        
+
+    public static ArrayList<Servicio> cargarListaServicios(InputStream archivo) {
+        ArrayList<Servicio> listaServicios = new ArrayList<>();
+
         try {
             InputSource original = new InputSource(archivo);
             SAXHandlerServicio handler = new SAXHandlerServicio();
-            
-            // Configuración del parser SAX
+
+            // configuración del parser SAX
             SAXParserFactory categoria = SAXParserFactory.newInstance();
             SAXParser parser = categoria.newSAXParser();
             XMLReader lector = parser.getXMLReader();
-            
-            // Asigna el manejador de eventos y parsea el archivo
+
+            // asigna el manejador de eventos y parsea el archivo
             lector.setContentHandler(handler);
             lector.parse(original);
-            
-            // Obtiene los objetos procesados por el manejador
+
             listaServicios = handler.getListaServicios();
-        } catch (IOException | SAXException | ParserConfigurationException ex){
+        } catch (IOException | SAXException | ParserConfigurationException ex) {
             ex.printStackTrace();
-        } 
+        }
         return listaServicios;
     }
-    
-    public static ArrayList<Cliente> cargarListaClientes(InputStream archivo){
-        ArrayList<Cliente> listaClientes = new ArrayList();
-        
+
+    public static ArrayList<Cliente> cargarListaClientes(InputStream archivo) {
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+
         try {
             InputSource original = new InputSource(archivo);
             SAXHandlerCliente handler = new SAXHandlerCliente();
-            
-            // Configuración del parser SAX
+
+            // configuración del parser SAX
             SAXParserFactory categoria = SAXParserFactory.newInstance();
             SAXParser parser = categoria.newSAXParser();
             XMLReader lector = parser.getXMLReader();
-            
-            // Asigna el manejador de eventos y parsea el archivo
+
+            // asigna el manejador de eventos y parsea el archivo
             lector.setContentHandler(handler);
             lector.parse(original);
-            
-            // Obtiene los objetos procesados por el manejador
+
             listaClientes = handler.getListaClientes();
-        } catch (IOException | SAXException | ParserConfigurationException ex){
+        } catch (IOException | SAXException | ParserConfigurationException ex) {
             ex.printStackTrace();
-        } 
+        }
         return listaClientes;
+    }
+
+    public static ArrayList<Cita> cargarListaCitas(InputStream archivo, ArrayList<Cliente> listaClientes, ArrayList<Veterinario> listaVeterinarios) {
+        ArrayList<Cita> listaCitas = new ArrayList<>();
+
+        try {
+            InputSource original = new InputSource(archivo);
+            SAXHandlerCita handler = new SAXHandlerCita(listaClientes, listaVeterinarios);
+
+            // configuración del parser SAX
+            SAXParserFactory categoria = SAXParserFactory.newInstance();
+            SAXParser parser = categoria.newSAXParser();
+            XMLReader lector = parser.getXMLReader();
+
+            // asigna el manejador de eventos y parsea el archivo
+            lector.setContentHandler(handler);
+            lector.parse(original);
+
+            listaCitas = handler.getListaCitas();
+        } catch (IOException | SAXException | ParserConfigurationException ex) {
+            ex.printStackTrace();
+        }
+        return listaCitas;
     }
 }
