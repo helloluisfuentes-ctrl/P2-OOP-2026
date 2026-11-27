@@ -5,23 +5,21 @@
 package Presentacion;
 
 import Conceptos.Servicio;
-import java.io.File;
+import Util.GestorDAT;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Ventana modal para la gestión de Servicios (CRUD).
  *
  * @author fuent
  */
 public class VentanaServicios extends javax.swing.JDialog {
 
-    //arraylist servicios
+    // arraylist servicios
     private ArrayList<Servicio> listaServicios;
-    
-    //archivo para guardar
-    File archivoServicios = new File("data\\servicios.xml");
-    
+
     /**
      * Creates new form VentanaServicios
      */
@@ -31,7 +29,7 @@ public class VentanaServicios extends javax.swing.JDialog {
         this.listaServicios = listaServicios;
         this.textFieldID.setEditable(false);
         this.textFieldID.setText(generarNuevoId());
-        LlenarTabla(); 
+        LlenarTabla();
     }
 
     private String generarNuevoId() {
@@ -51,32 +49,37 @@ public class VentanaServicios extends javax.swing.JDialog {
         return String.valueOf(maxId == 0 ? 100 : maxId + 1);
     }
 
-    
-    private void LlenarTabla(){
-        
+    private void LlenarTabla() {
         // Encabezados de las columnas de la tabla
-        Vector <String> titulos = new Vector();
+        Vector<String> titulos = new Vector<>();
         titulos.addElement("ID");
         titulos.addElement("Nombre");
-        titulos.addElement("Precios");
-            
+        titulos.addElement("Precio");
+
         // Estructura para almacenar las filas de datos
-        Vector<Vector> filas = new Vector();
-            
-        // Poblado de filas con la información de cada persona
-        for (Servicio s: this.listaServicios){
-            Vector<String> fila = new Vector();
-            fila.addElement(s.getIdentificacion());
-            fila.addElement(s.getNombre());
-            fila.addElement(s.getPrecio());
-            filas.addElement(fila);
+        Vector<Vector<String>> filas = new Vector<>();
+
+        // Poblado de filas con la información de cada servicio
+        if (this.listaServicios != null) {
+            for (Servicio s : this.listaServicios) {
+                Vector<String> fila = new Vector<>();
+                fila.addElement(s.getIdentificacion());
+                fila.addElement(s.getNombre());
+                fila.addElement(s.getPrecio());
+                filas.addElement(fila);
+            }
         }
-            
-        // Asignación del modelo de datos a la tabla
-        DefaultTableModel modeloTabla = new DefaultTableModel(filas, titulos);
-        this.tableServicios.setModel(modeloTabla);  
+
+        // Asignación del modelo de datos a la tabla (no editable directamente)
+        DefaultTableModel modeloTabla = new DefaultTableModel(filas, titulos) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        this.tableServicios.setModel(modeloTabla);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,23 +105,28 @@ public class VentanaServicios extends javax.swing.JDialog {
         buttonModificar = new javax.swing.JButton();
         buttonBorrar = new javax.swing.JButton();
         buttonSalir = new javax.swing.JButton();
-        ButtonSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Servicios");
 
         labelServicios.setText("Servicios");
 
         tableServicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "ID", "Nombre", "Precio"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tableServicios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableServiciosMouseClicked(evt);
@@ -194,18 +202,6 @@ public class VentanaServicios extends javax.swing.JDialog {
             }
         });
 
-        ButtonSalvar.setText("Salvar");
-        ButtonSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ButtonSalvarMouseClicked(evt);
-            }
-        });
-        ButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonSalvarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -218,11 +214,7 @@ public class VentanaServicios extends javax.swing.JDialog {
                     .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(ButtonSalvar)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonSalir))
+                            .addComponent(buttonSalir)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(99, 99, 99)
@@ -290,9 +282,7 @@ public class VentanaServicios extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonSalir)
-                    .addComponent(ButtonSalvar))
+                .addComponent(buttonSalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -320,11 +310,11 @@ public class VentanaServicios extends javax.swing.JDialog {
     }//GEN-LAST:event_textFieldPrecioActionPerformed
 
     private void tableServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableServiciosMouseClicked
-        //obtener row
+        // obtener row
         int fila = tableServicios.getSelectedRow();
-        
-        //Actualizo los textfields
-        if (fila != -1){
+
+        // actualizo los textfields
+        if (fila != -1) {
             textFieldID.setText(tableServicios.getValueAt(fila, 0).toString());
             textFieldNombre.setText(tableServicios.getValueAt(fila, 1).toString());
             textFieldPrecio.setText(tableServicios.getValueAt(fila, 2).toString());
@@ -332,7 +322,7 @@ public class VentanaServicios extends javax.swing.JDialog {
     }//GEN-LAST:event_tableServiciosMouseClicked
 
     private void buttonLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLimpiarMouseClicked
-        //limpia los textfiel y la tabla
+        // limpia los textfield y la tabla
         textFieldID.setText(generarNuevoId());
         textFieldNombre.setText("");
         textFieldPrecio.setText("");
@@ -340,7 +330,7 @@ public class VentanaServicios extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonLimpiarMouseClicked
 
     private void buttonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSalirMouseClicked
-        //Limpia y sale
+        // limpia y sale
         textFieldID.setText("");
         textFieldNombre.setText("");
         textFieldPrecio.setText("");
@@ -349,57 +339,58 @@ public class VentanaServicios extends javax.swing.JDialog {
     }//GEN-LAST:event_buttonSalirMouseClicked
 
     private void buttonNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonNuevoMouseClicked
-        //obtener valores de la tabla
+        // obtener valores de los campos
         String id = generarNuevoId();
         String nombre = textFieldNombre.getText().trim();
         String precio = textFieldPrecio.getText().trim();
-        
-        //validaciones
-        if (nombre.isBlank() || precio.isBlank()){
+
+        // validaciones
+        if (nombre.isBlank() || precio.isBlank()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos");
             return;
         }
-        
-        for (Servicio s : listaServicios){
-            if (s.getNombre().equalsIgnoreCase(nombre)){
+
+        for (Servicio s : listaServicios) {
+            if (s.getNombre().equalsIgnoreCase(nombre)) {
                 javax.swing.JOptionPane.showMessageDialog(this, "El servicio ya existe");
                 return;
             }
         }
-        
-        //creacion nuevo servicio
+
+        // creacion nuevo servicio
         Servicio nuevoServicio = new Servicio();
         nuevoServicio.setIdentificacion(id);
         nuevoServicio.setNombre(nombre);
         nuevoServicio.setPrecio(precio);
-        
-        //añado el servicio y actualizo la tabla
+
+        // añado el servicio, actualizo la tabla y guardo en SERVICIOS.DAT
         this.listaServicios.add(nuevoServicio);
         LlenarTabla();
+        GestorDAT.guardarServicios(this.listaServicios);
         buttonLimpiarMouseClicked(null);
     }//GEN-LAST:event_buttonNuevoMouseClicked
 
     private void buttonModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonModificarMouseClicked
         int fila = tableServicios.getSelectedRow();
-        
-        //validaciones
-        if (fila == -1){
+
+        // validaciones
+        if (fila == -1) {
             javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un servicio para modificarlo");
-                return;
+            return;
         }
-        
-        //obtengo los valores 
+
+        // obtengo los valores
         String id = tableServicios.getValueAt(fila, 0).toString();
         String nombre = textFieldNombre.getText().trim();
         String precio = textFieldPrecio.getText().trim();
-        
-        //validaciones
-        if (nombre.isBlank() || precio.isBlank()){
+
+        // validaciones
+        if (nombre.isBlank() || precio.isBlank()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos");
             return;
         }
-        
-        //validar que no exista otro servicio con el mismo nombre
+
+        // validar que no exista otro servicio con el mismo nombre
         for (Servicio s : listaServicios) {
             if (!s.getIdentificacion().equalsIgnoreCase(id) && s.getNombre().equalsIgnoreCase(nombre)) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Ya existe otro servicio con ese nombre");
@@ -407,12 +398,13 @@ public class VentanaServicios extends javax.swing.JDialog {
             }
         }
 
-        //encontrar servicio
-        for (Servicio s : listaServicios){
-            if (s.getIdentificacion().equalsIgnoreCase(id)){
+        // encontrar servicio
+        for (Servicio s : listaServicios) {
+            if (s.getIdentificacion().equalsIgnoreCase(id)) {
                 s.setNombre(nombre);
                 s.setPrecio(precio);
                 LlenarTabla();
+                GestorDAT.guardarServicios(this.listaServicios);
                 buttonLimpiarMouseClicked(null);
                 return;
             }
@@ -420,23 +412,17 @@ public class VentanaServicios extends javax.swing.JDialog {
         javax.swing.JOptionPane.showMessageDialog(this, "Servicio no encontrado");
     }//GEN-LAST:event_buttonModificarMouseClicked
 
-    private void ButtonSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonSalvarMouseClicked
-        //guardar en archivo xml
-        Util.GuardadorXML.guardarServicios(listaServicios, archivoServicios);
-        javax.swing.JOptionPane.showMessageDialog(this, "Se guardo correctamente");
-    }//GEN-LAST:event_ButtonSalvarMouseClicked
-
     private void buttonBorrarMouseClicked(java.awt.event.MouseEvent evt) {
-        //obtener row
+        // obtener row
         int fila = tableServicios.getSelectedRow();
-        
-        //validar seleccion
+
+        // validar seleccion
         if (fila == -1) {
             javax.swing.JOptionPane.showMessageDialog(this, "Debe seleccionar un servicio para borrarlo");
             return;
         }
-        
-        //confirmar eliminacion
+
+        // confirmar eliminacion
         int confirm = javax.swing.JOptionPane.showConfirmDialog(
             this,
             "¿Está seguro de que desea eliminar el servicio seleccionado?",
@@ -448,7 +434,7 @@ public class VentanaServicios extends javax.swing.JDialog {
             return;
         }
 
-        //eliminar servicio de la lista
+        // eliminar servicio de la lista
         String id = tableServicios.getValueAt(fila, 0).toString();
         for (int i = 0; i < listaServicios.size(); i++) {
             if (listaServicios.get(i).getIdentificacion().equalsIgnoreCase(id)) {
@@ -456,63 +442,14 @@ public class VentanaServicios extends javax.swing.JDialog {
                 break;
             }
         }
-        
-        //actualizar tabla y limpiar
+
+        // actualizar tabla, guardar en SERVICIOS.DAT y limpiar
         LlenarTabla();
+        GestorDAT.guardarServicios(this.listaServicios);
         buttonLimpiarMouseClicked(null);
     }
 
-    private void ButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {
-        //guardar en archivo xml
-        Util.GuardadorXML.guardarServicios(listaServicios, archivoServicios);
-        javax.swing.JOptionPane.showMessageDialog(this, "Se guardó correctamente");
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaServicios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-             //   VentanaServicios dialog = new VentanaServicios(new javax.swing.JFrame(), true);
-               // dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-               //     @Override
-               //     public void windowClosing(java.awt.event.WindowEvent e) {
-               //         System.exit(0);
-               //     }
-               // });
-              //  dialog.setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonSalvar;
     private javax.swing.JButton buttonBorrar;
     private javax.swing.JButton buttonLimpiar;
     private javax.swing.JButton buttonModificar;

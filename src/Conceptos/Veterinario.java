@@ -4,39 +4,31 @@
  */
 package Conceptos;
 
-import Conceptos.Servicio;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  *
  * @author fuent
  */
-public class Veterinario implements Serializable{
-    
-    
-    
-    //Atributos
-    private static final long serialVersionUID = 1L; //para que no de errores
-    
+public class Veterinario implements Serializable {
+
+    // Atributos
+    private static final long serialVersionUID = 1L; // para que no de errores
+
     private String identificacion;
     private String nombre;
     private String puesto;
     private String telefono;
-    private ArrayList<Servicio> listaServicios = new ArrayList();
-    
-    //Constructor
 
+    // Constructor
     public Veterinario() {
         this.identificacion = "";
         this.nombre = "";
         this.puesto = "";
         this.telefono = "";
     }
-    
-    
-    
-    //Getters and setters
+
+    // Getters and setters
     public String getIdentificacion() {
         return identificacion;
     }
@@ -68,29 +60,10 @@ public class Veterinario implements Serializable{
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
-    //toString
+
+    // toString
     @Override
     public String toString() {
-        return  nombre;
-    }
-    
-    //NO SE SI SE DEBE ELIMINAR LSITA SERVICIOS
-    
-   public ArrayList<Servicio> getListaServicios() {
-        return listaServicios;
-    }
-
-    public void setListaServicios(ArrayList<Servicio> listaServicios) {
-        this.listaServicios = listaServicios;
-    }
-    
-    //Añadir y eliminar servicio
-    public void AñadirServicio(Servicio servicio){
-        this.listaServicios.add(servicio);
-    }
-    
-    public void EliminarServicio(Servicio servicio){
-        this.listaServicios.remove(servicio);
+        return nombre;
     }
 }

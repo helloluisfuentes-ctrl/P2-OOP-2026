@@ -5,7 +5,7 @@
         <precio>30000</precio>
     </servicio>
     <servicio id="101">
-        <nombre>Examenen de sangre</nombre>
+        <nombre>Examen de sangre</nombre>
         <precio>20000</precio>
     </servicio>
     <servicio id="102">

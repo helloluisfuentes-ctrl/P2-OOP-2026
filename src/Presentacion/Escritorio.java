@@ -40,13 +40,6 @@ public class Escritorio extends javax.swing.JFrame {
     }
 
     /**
-     * Constructor temporal de 3 listas para compatibilidad mientras se integra Main.
-     */
-    public Escritorio(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Veterinario> veterinarios) {
-        this(clientes, servicios, veterinarios, new ArrayList<>());
-    }
-
-    /**
      * Constructor que recibe las 4 listas de datos cargadas desde los archivos .DAT.
      */
     public Escritorio(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Veterinario> veterinarios, ArrayList<Cita> citas) {
@@ -274,7 +267,7 @@ public class Escritorio extends javax.swing.JFrame {
 
     private void buttonVeterinariosActionPerformed(java.awt.event.ActionEvent evt) {
         //abrir ventana de veterinarios
-        VentanaVeterinarios ventana = new VentanaVeterinarios(this, true, this.listaVeterinarios, this.listaServicios);
+        VentanaVeterinarios ventana = new VentanaVeterinarios(this, true, this.listaVeterinarios);
         ventana.setLocationRelativeTo(this);
         ventana.setVisible(true);
     }

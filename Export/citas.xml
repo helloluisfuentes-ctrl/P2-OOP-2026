@@ -30,11 +30,9 @@
     <cita id="102">
         <cliente_id>300003333</cliente_id>
         <fecha>02-11-2026</fecha>
-        <veterinario_id></veterinario_id>
+        <veterinario_id/>
         <observaciones>Cojera leve en pata trasera derecha despues de correr.</observaciones>
-        <diagnosticos>
-        </diagnosticos>
-        <tratamientos>
-        </tratamientos>
+        <diagnosticos/>
+        <tratamientos/>
     </cita>
 </citas>

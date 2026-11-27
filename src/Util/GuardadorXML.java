@@ -1,5 +1,6 @@
 package Util;
 
+import Conceptos.Cita;
 import Conceptos.Cliente;
 import Conceptos.Servicio;
 import Conceptos.Veterinario;
@@ -9,10 +10,9 @@ import java.util.ArrayList;
 /**
  * @author marcoperezr
  */
-
 public class GuardadorXML {
 
-    //guardar clientes
+    // guardar clientes
     public static void guardarClientes(ArrayList<Cliente> lista, File archivo) {
         EscritorXMLCliente escritor = new EscritorXMLCliente();
         escritor.escribirClientes(lista, archivo);
@@ -22,7 +22,7 @@ public class GuardadorXML {
         guardarClientes(lista, new File(rutaArchivo));
     }
 
-    //guardar servicios
+    // guardar servicios
     public static void guardarServicios(ArrayList<Servicio> lista, File archivo) {
         EscritorXMLServicio escritor = new EscritorXMLServicio();
         escritor.escribirServicios(lista, archivo);
@@ -32,7 +32,7 @@ public class GuardadorXML {
         guardarServicios(lista, new File(rutaArchivo));
     }
 
-    //guardar veterinarios
+    // guardar veterinarios
     public static void guardarVeterinarios(ArrayList<Veterinario> lista, File archivo) {
         EscritorXMLVeterinario escritor = new EscritorXMLVeterinario();
         escritor.escribirVeterinarios(lista, archivo);
@@ -40,5 +40,15 @@ public class GuardadorXML {
 
     public static void guardarVeterinarios(ArrayList<Veterinario> lista, String rutaArchivo) {
         guardarVeterinarios(lista, new File(rutaArchivo));
+    }
+
+    // guardar citas
+    public static void guardarCitas(ArrayList<Cita> lista, File archivo) {
+        EscritorXMLCita escritor = new EscritorXMLCita();
+        escritor.escribirCitas(lista, archivo);
+    }
+
+    public static void guardarCitas(ArrayList<Cita> lista, String rutaArchivo) {
+        guardarCitas(lista, new File(rutaArchivo));
     }
 }
