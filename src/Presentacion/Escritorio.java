@@ -1,15 +1,18 @@
 package Presentacion;
 
+import Conceptos.Cita;
 import Conceptos.Cliente;
 import Conceptos.Servicio;
 import Conceptos.Veterinario;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  * Ventana principal (Escritorio) de la aplicación.
- * Actúa como lanzador visual para Clientes, Servicios y Médicos Veterinarios.
+ * Actúa como lanzador visual para Citas (Consultar, Solicitar, Atender),
+ * Clientes, Servicios y Médicos Veterinarios.
  * 
  * @author fuent
  */
@@ -19,12 +22,17 @@ public class Escritorio extends javax.swing.JFrame {
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Servicio> listaServicios;
     private ArrayList<Veterinario> listaVeterinarios;
+    private ArrayList<Cita> listaCitas;
 
     /**
      * Constructor por defecto.
      */
     public Escritorio() {
         initComponents();
+        this.listaClientes = new ArrayList<>();
+        this.listaServicios = new ArrayList<>();
+        this.listaVeterinarios = new ArrayList<>();
+        this.listaCitas = new ArrayList<>();
         this.setLocationRelativeTo(null);
         this.setSize(1024, 768);
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -32,13 +40,14 @@ public class Escritorio extends javax.swing.JFrame {
     }
 
     /**
-     * Constructor que recibe las 3 listas de datos cargadas desde los XML.
+     * Constructor que recibe las 4 listas de datos cargadas desde los archivos .DAT.
      */
-    public Escritorio(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Veterinario> veterinarios) {
+    public Escritorio(ArrayList<Cliente> clientes, ArrayList<Servicio> servicios, ArrayList<Veterinario> veterinarios, ArrayList<Cita> citas) {
         this();
         this.listaClientes = clientes;
         this.listaServicios = servicios;
         this.listaVeterinarios = veterinarios;
+        this.listaCitas = citas;
     }
 
     /**
@@ -47,6 +56,18 @@ public class Escritorio extends javax.swing.JFrame {
     private void cargarIconos() {
         //cargar imagenes para los botones
         try {
+            File imgConsultar = new File("Imagenes/consultar.png");
+            if (imgConsultar.exists()) {
+                buttonConsultar.setIcon(new ImageIcon(imgConsultar.getAbsolutePath()));
+            }
+            File imgSolicitar = new File("Imagenes/solicitar.png");
+            if (imgSolicitar.exists()) {
+                buttonSolicitar.setIcon(new ImageIcon(imgSolicitar.getAbsolutePath()));
+            }
+            File imgAtender = new File("Imagenes/atender.png");
+            if (imgAtender.exists()) {
+                buttonAtender.setIcon(new ImageIcon(imgAtender.getAbsolutePath()));
+            }
             File imgClientes = new File("Imagenes/clientes.png");
             if (imgClientes.exists()) {
                 buttonClientes.setIcon(new ImageIcon(imgClientes.getAbsolutePath()));
@@ -68,20 +89,51 @@ public class Escritorio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelTitulo = new javax.swing.JLabel();
+        buttonConsultar = new javax.swing.JButton();
+        buttonSolicitar = new javax.swing.JButton();
+        buttonAtender = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         buttonClientes = new javax.swing.JButton();
         buttonServicios = new javax.swing.JButton();
         buttonVeterinarios = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
-        menuArchivo = new javax.swing.JMenu();
-        menuItemSalir = new javax.swing.JMenuItem();
+        menuUtil = new javax.swing.JMenu();
+        menuItemExportar = new javax.swing.JMenuItem();
+        menuItemImportar = new javax.swing.JMenuItem();
+        menuItemLimpiar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Veterinaria Plus");
 
-        labelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitulo.setText("Clínica Veterinaria - Menú Principal");
+        buttonConsultar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        buttonConsultar.setText("Consultar");
+        buttonConsultar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonConsultar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonConsultarActionPerformed(evt);
+            }
+        });
+
+        buttonSolicitar.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        buttonSolicitar.setText("Solicitar");
+        buttonSolicitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonSolicitar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonSolicitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSolicitarActionPerformed(evt);
+            }
+        });
+
+        buttonAtender.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        buttonAtender.setText("Atender");
+        buttonAtender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonAtender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonAtender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAtenderActionPerformed(evt);
+            }
+        });
 
         buttonClientes.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         buttonClientes.setText("Clientes");
@@ -113,17 +165,33 @@ public class Escritorio extends javax.swing.JFrame {
             }
         });
 
-        menuArchivo.setText("Archivo");
+        menuUtil.setText("Util");
 
-        menuItemSalir.setText("Salir");
-        menuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+        menuItemExportar.setText("Exportar");
+        menuItemExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemSalirActionPerformed(evt);
+                menuItemExportarActionPerformed(evt);
             }
         });
-        menuArchivo.add(menuItemSalir);
+        menuUtil.add(menuItemExportar);
 
-        menuBar.add(menuArchivo);
+        menuItemImportar.setText("Importar");
+        menuItemImportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemImportarActionPerformed(evt);
+            }
+        });
+        menuUtil.add(menuItemImportar);
+
+        menuItemLimpiar.setText("Limpiar");
+        menuItemLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemLimpiarActionPerformed(evt);
+            }
+        });
+        menuUtil.add(menuItemLimpiar);
+
+        menuBar.add(menuUtil);
 
         setJMenuBar(menuBar);
 
@@ -133,8 +201,14 @@ public class Escritorio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(70, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(labelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(buttonSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(buttonAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
@@ -146,22 +220,54 @@ public class Escritorio extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonVeterinarios, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
+                    .addComponent(buttonConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonVeterinarios, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonConsultarActionPerformed(java.awt.event.ActionEvent evt) {
+        //abrir ventana de consultar citas
+        VentanaConsultarCitas ventana = new VentanaConsultarCitas(this, true, this.listaCitas);
+        ventana.setLocationRelativeTo(this);
+        ventana.setVisible(true);
+    }
+
+    private void buttonSolicitarActionPerformed(java.awt.event.ActionEvent evt) {
+        //abrir ventana de crear cita
+        VentanaCrearCita ventana = new VentanaCrearCita(this, true, this.listaCitas, this.listaClientes);
+        ventana.setLocationRelativeTo(this);
+        ventana.setVisible(true);
+    }
+
+    private void buttonAtenderActionPerformed(java.awt.event.ActionEvent evt) {
+        //validar que existan citas registradas
+        if (this.listaCitas == null || this.listaCitas.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay citas registradas para atender");
+            return;
+        }
+
+        //abrir ventana de atender cita
+        VentanaAtenderCita ventana = new VentanaAtenderCita(this, true, this.listaCitas, this.listaVeterinarios);
+        ventana.setLocationRelativeTo(this);
+        ventana.setVisible(true);
+    }
+
     private void buttonVeterinariosActionPerformed(java.awt.event.ActionEvent evt) {
         //abrir ventana de veterinarios
-        VentanaVeterinarios ventana = new VentanaVeterinarios(this, true, this.listaVeterinarios, this.listaServicios);
+        VentanaVeterinarios ventana = new VentanaVeterinarios(this, true, this.listaVeterinarios);
         ventana.setLocationRelativeTo(this);
         ventana.setVisible(true);
     }
@@ -180,9 +286,58 @@ public class Escritorio extends javax.swing.JFrame {
         ventana.setVisible(true);
     }
 
-    private void menuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {
-        //salir del programa
-        System.exit(0);
+    private void menuItemExportarActionPerformed(java.awt.event.ActionEvent evt) {
+        //confirmar exportacion
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Confirme si desea exportar los datos a los archivos XML.\nEsto sobrescribirá los archivos XML actuales.",
+            "Confirmar exportación",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        //exportar todos los conceptos a xml
+        Util.GestorImportExport.exportarTodo(this.listaClientes, this.listaServicios, this.listaVeterinarios, this.listaCitas);
+        JOptionPane.showMessageDialog(this, "Se exportaron los datos correctamente");
+    }
+
+    private void menuItemImportarActionPerformed(java.awt.event.ActionEvent evt) {
+        //confirmar importacion
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Confirme si desea importar los datos desde los archivos XML.\nEsto reemplazará todos los datos actuales.",
+            "Confirmar importación",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        //importar todos los conceptos desde xml
+        Util.GestorImportExport.importarTodo(this.listaClientes, this.listaServicios, this.listaVeterinarios, this.listaCitas);
+        JOptionPane.showMessageDialog(this, "Se importaron los datos correctamente");
+    }
+
+    private void menuItemLimpiarActionPerformed(java.awt.event.ActionEvent evt) {
+        //confirmar limpieza
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Confirme si desea limpiar todos los datos y archivos .DAT.\nEsta acción no se puede deshacer.",
+            "Confirmar limpieza",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        //limpiar listas en memoria y archivos .dat
+        Util.GestorImportExport.limpiarTodo(this.listaClientes, this.listaServicios, this.listaVeterinarios, this.listaCitas);
+        JOptionPane.showMessageDialog(this, "Se limpiaron todos los datos correctamente");
     }
 
     public static void main(String args[]) {
@@ -205,12 +360,17 @@ public class Escritorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonAtender;
     private javax.swing.JButton buttonClientes;
+    private javax.swing.JButton buttonConsultar;
     private javax.swing.JButton buttonServicios;
+    private javax.swing.JButton buttonSolicitar;
     private javax.swing.JButton buttonVeterinarios;
-    private javax.swing.JLabel labelTitulo;
-    private javax.swing.JMenu menuArchivo;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem menuItemSalir;
+    private javax.swing.JMenuItem menuItemExportar;
+    private javax.swing.JMenuItem menuItemImportar;
+    private javax.swing.JMenuItem menuItemLimpiar;
+    private javax.swing.JMenu menuUtil;
     // End of variables declaration//GEN-END:variables
 }

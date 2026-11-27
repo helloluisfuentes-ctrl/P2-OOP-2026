@@ -28,8 +28,7 @@ public class Main {
         GestorDAT.vincularReferenciasCitas(listaCitas, listaClientes, listaVeterinarios);
 
         // inicializar la ventana principal y pasarle las listas
-        // TODO integración: pasar listaCitas
-        Escritorio ventana = new Escritorio(listaClientes, listaServicios, listaVeterinarios);
+        Escritorio ventana = new Escritorio(listaClientes, listaServicios, listaVeterinarios, listaCitas);
         ventana.setVisible(true);
     }
 }

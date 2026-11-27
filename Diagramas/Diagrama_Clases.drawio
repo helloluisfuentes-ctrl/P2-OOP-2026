@@ -1,0 +1,385 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0" version="24.7.17">
+  <diagram id="diagrama-clases" name="Diagrama de Clases">
+    <mxGraphModel dx="1450" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1450" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Interfaces / Clases base de Java -->
+        <mxCell id="iface-serializable" value="&lt;&lt;interface&gt;&gt;&lt;br&gt;&lt;b&gt;Serializable&lt;/b&gt;&lt;br&gt;(java.io)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="30" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-defaulthandler" value="&lt;b&gt;DefaultHandler&lt;/b&gt;&lt;br&gt;(org.xml.sax.helpers)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="195" y="580" width="210" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- CONCEPTOS: Servicio -->
+        <mxCell id="cls-servicio" value="Servicio" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="160" width="250" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-servicio-attr" value="- serialVersionUID: long&#xa;- identificacion: String&#xa;- nombre: String&#xa;- precio: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-servicio">
+          <mxGeometry y="26" width="250" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-servicio-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="cls-servicio">
+          <mxGeometry y="98" width="250" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-servicio-meth" value="+ Servicio()&#xa;+ get/setIdentificacion()&#xa;+ get/setNombre()&#xa;+ get/setPrecio()&#xa;+ toString(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-servicio">
+          <mxGeometry y="106" width="250" height="94" as="geometry" />
+        </mxCell>
+
+        <!-- CONCEPTOS: Cliente -->
+        <mxCell id="cls-cliente" value="Cliente" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="355" y="150" width="275" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cliente-attr" value="- serialVersionUID: long&#xa;- identificacion: String&#xa;- nombre: String&#xa;- propietario: String&#xa;- telefono: String&#xa;- email: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-cliente">
+          <mxGeometry y="26" width="275" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cliente-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="cls-cliente">
+          <mxGeometry y="126" width="275" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cliente-meth" value="+ Cliente()&#xa;+ get/setIdentificacion()&#xa;+ get/setNombre()&#xa;+ get/setPropietario()&#xa;+ get/setTelefono()&#xa;+ get/setEmail()&#xa;+ toString(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-cliente">
+          <mxGeometry y="134" width="275" height="116" as="geometry" />
+        </mxCell>
+
+        <!-- CONCEPTOS: Cita -->
+        <mxCell id="cls-cita" value="Cita" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="155" width="330" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cita-attr" value="- serialVersionUID: long&#xa;- identificacion: String&#xa;- cliente: Cliente&#xa;- veterinario: Veterinario&#xa;- fecha: String&#xa;- observaciones: String&#xa;- listaDiagnosticos: ArrayList&lt;String&gt;&#xa;- listaTratamientos: ArrayList&lt;String&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-cita">
+          <mxGeometry y="26" width="330" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cita-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="cls-cita">
+          <mxGeometry y="156" width="330" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cita-meth" value="+ Cita()&#xa;+ AñadirDiagnostico(diagnostico: String): void&#xa;+ EliminarDiagnostico(diagnostico: String): void&#xa;+ AñadirTratamiento(tratamiento: String): void&#xa;+ EliminarTratamiento(tratamiento: String): void&#xa;+ get/setIdentificacion()&#xa;+ get/setCliente()&#xa;+ get/setVeterinario()&#xa;+ get/setFecha()&#xa;+ get/setObservaciones()&#xa;+ get/setListaDiagnosticos()&#xa;+ get/setListaTratamientos()&#xa;+ toString(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-cita">
+          <mxGeometry y="164" width="330" height="196" as="geometry" />
+        </mxCell>
+
+        <!-- CONCEPTOS: Veterinario (sin listaServicios) -->
+        <mxCell id="cls-veterinario" value="Veterinario" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="155" width="275" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-veterinario-attr" value="- serialVersionUID: long&#xa;- identificacion: String&#xa;- nombre: String&#xa;- puesto: String&#xa;- telefono: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-veterinario">
+          <mxGeometry y="26" width="275" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-veterinario-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="cls-veterinario">
+          <mxGeometry y="112" width="275" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-veterinario-meth" value="+ Veterinario()&#xa;+ get/setIdentificacion()&#xa;+ get/setNombre()&#xa;+ get/setPuesto()&#xa;+ get/setTelefono()&#xa;+ toString(): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-veterinario">
+          <mxGeometry y="120" width="275" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- Realizaciones a Serializable -->
+        <mxCell id="rel-serv-ser" value="" style="endArrow=block;endFill=0;dashed=1;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="cls-servicio" target="iface-serializable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-cli-ser" value="" style="endArrow=block;endFill=0;dashed=1;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="cls-cliente" target="iface-serializable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-cita-ser" value="" style="endArrow=block;endFill=0;dashed=1;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="cls-cita" target="iface-serializable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-vet-ser" value="" style="endArrow=block;endFill=0;dashed=1;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="cls-veterinario" target="iface-serializable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Asociaciones de Cita con Cliente y Veterinario -->
+        <mxCell id="asoc-cita-cli" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="cls-cita" target="cls-cliente">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="asoc-cita-cli-src" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="asoc-cita-cli">
+          <mxGeometry x="-0.7" y="-12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="asoc-cita-cli-tgt" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="asoc-cita-cli">
+          <mxGeometry x="0.7" y="-12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="asoc-cita-vet" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="cls-cita" target="cls-veterinario">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="asoc-cita-vet-src" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="asoc-cita-vet">
+          <mxGeometry x="-0.7" y="-12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="asoc-cita-vet-tgt" value="0..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="asoc-cita-vet">
+          <mxGeometry x="0.7" y="-12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- UTIL COLUMNA 1: SAX XML Readers -->
+        <mxCell id="cls-sax-cli" value="SAXHandlerCliente" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="695" width="215" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-cli-attr" value="- listaClientes: ArrayList&lt;Cliente&gt;&#xa;- pilaClientes: Stack&#xa;- pilaEtiquetas: Stack" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-sax-cli">
+          <mxGeometry y="26" width="215" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-cli-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="cls-sax-cli">
+          <mxGeometry y="78" width="215" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-cli-meth" value="+ getListaClientes(): ArrayList&lt;Cliente&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-sax-cli">
+          <mxGeometry y="86" width="215" height="34" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-sax-serv" value="SAXHandlerServicio" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="285" y="695" width="215" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-serv-attr" value="- listaServicios: ArrayList&lt;Servicio&gt;&#xa;- pilaServicios: Stack&#xa;- pilaEtiquetas: Stack" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-sax-serv">
+          <mxGeometry y="26" width="215" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-serv-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="cls-sax-serv">
+          <mxGeometry y="78" width="215" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-serv-meth" value="+ getListaServicios(): ArrayList&lt;Servicio&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-sax-serv">
+          <mxGeometry y="86" width="215" height="34" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-sax-vet" value="SAXHandlerVeterinario" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="855" width="215" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-vet-attr" value="- listaVeterinarios: ArrayList&lt;Veterinario&gt;&#xa;- pilaVeterinarios: Stack&#xa;- pilaEtiquetas: Stack" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-sax-vet">
+          <mxGeometry y="26" width="215" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-vet-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="cls-sax-vet">
+          <mxGeometry y="78" width="215" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-vet-meth" value="+ getListaVeterinarios(): ArrayList" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-sax-vet">
+          <mxGeometry y="86" width="215" height="34" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-sax-cita" value="SAXHandlerCita" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="285" y="855" width="215" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-cita-attr" value="- listaCitas: ArrayList&lt;Cita&gt;&#xa;- listaClientes: ArrayList&lt;Cliente&gt;&#xa;- listaVeterinarios: ArrayList&lt;Veterinario&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-sax-cita">
+          <mxGeometry y="26" width="215" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-cita-sep" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="cls-sax-cita">
+          <mxGeometry y="78" width="215" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-sax-cita-meth" value="+ getListaCitas(): ArrayList&lt;Cita&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-sax-cita">
+          <mxGeometry y="86" width="215" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- Herencia DefaultHandler -->
+        <mxCell id="her-sax-cli" value="" style="endArrow=block;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="cls-sax-cli" target="cls-defaulthandler">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="her-sax-serv" value="" style="endArrow=block;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="cls-sax-serv" target="cls-defaulthandler">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="her-sax-vet" value="" style="endArrow=block;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="cls-sax-vet" target="cls-defaulthandler">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="her-sax-cita" value="" style="endArrow=block;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="cls-sax-cita" target="cls-defaulthandler">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- CargadorXML -->
+        <mxCell id="cls-cargador" value="CargadorXML" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="1030" width="280" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cargador-meth" value="+ cargarListaClientes(InputStream): ArrayList&#xa;+ cargarListaServicios(InputStream): ArrayList&#xa;+ cargarListaVeterinarios(InputStream): ArrayList&#xa;+ cargarListaCitas(InputStream, ...): ArrayList" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-cargador">
+          <mxGeometry y="26" width="280" height="99" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dep-carg-cli" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-cargador" target="cls-sax-cli">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-carg-serv" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-cargador" target="cls-sax-serv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-carg-vet" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-cargador" target="cls-sax-vet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-carg-cita" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-cargador" target="cls-sax-cita">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- UTIL COLUMNA 2: DOM XML Writers -->
+        <mxCell id="cls-escritor-base" value="&lt;&lt;abstract&gt;&gt;&lt;br&gt;EscritorXML" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="725" y="580" width="245" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-escritor-base-meth" value="# crearNuevoDocumento(): Document&#xa;# guardarDocumentoEnArchivo(Document, File)&#xa;# crearElementoTexto(Document, String, String)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-escritor-base">
+          <mxGeometry y="36" width="245" height="79" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-esc-cli" value="EscritorXMLCliente" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="745" width="225" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-esc-cli-meth" value="+ escribirClientes(ArrayList, File): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-esc-cli">
+          <mxGeometry y="26" width="225" height="54" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-esc-serv" value="EscritorXMLServicio" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="745" width="225" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-esc-serv-meth" value="+ escribirServicios(ArrayList, File): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-esc-serv">
+          <mxGeometry y="26" width="225" height="54" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-esc-vet" value="EscritorXMLVeterinario" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="870" width="225" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-esc-vet-meth" value="+ escribirVeterinarios(ArrayList, File): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-esc-vet">
+          <mxGeometry y="26" width="225" height="54" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-esc-cita" value="EscritorXMLCita" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="870" width="225" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-esc-cita-meth" value="+ escribirCitas(ArrayList, File): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-esc-cita">
+          <mxGeometry y="26" width="225" height="54" as="geometry" />
+        </mxCell>
+
+        <!-- Herencia EscritorXML -->
+        <mxCell id="her-esc-cli" value="" style="endArrow=block;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="cls-esc-cli" target="cls-escritor-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="her-esc-serv" value="" style="endArrow=block;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="cls-esc-serv" target="cls-escritor-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="her-esc-vet" value="" style="endArrow=block;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="cls-esc-vet" target="cls-escritor-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="her-esc-cita" value="" style="endArrow=block;endFill=0;html=1;rounded=0;" edge="1" parent="1" source="cls-esc-cita" target="cls-escritor-base">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- GuardadorXML -->
+        <mxCell id="cls-guardador" value="GuardadorXML" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="705" y="1020" width="265" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-guardador-meth" value="+ guardarClientes(ArrayList, File/String)&#xa;+ guardarServicios(ArrayList, File/String)&#xa;+ guardarVeterinarios(ArrayList, File/String)&#xa;+ guardarCitas(ArrayList, File/String)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-guardador">
+          <mxGeometry y="26" width="265" height="114" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dep-guard-cli" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-guardador" target="cls-esc-cli">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-guard-serv" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-guardador" target="cls-esc-serv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-guard-vet" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-guardador" target="cls-esc-vet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-guard-cita" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-guardador" target="cls-esc-cita">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- UTIL COLUMNA 3: Serializacion .DAT -->
+        <mxCell id="cls-gestor-dat" value="GestorDAT" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="580" width="305" height="225" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-gestor-dat-meth" value="+ cargarClientes(): ArrayList&lt;Cliente&gt;&#xa;+ guardarClientes(ArrayList&lt;Cliente&gt;): void&#xa;+ cargarServicios(): ArrayList&lt;Servicio&gt;&#xa;+ guardarServicios(ArrayList&lt;Servicio&gt;): void&#xa;+ cargarVeterinarios(): ArrayList&lt;Veterinario&gt;&#xa;+ guardarVeterinarios(ArrayList&lt;Veterinario&gt;): void&#xa;+ cargarCitas(): ArrayList&lt;Cita&gt;&#xa;+ guardarCitas(ArrayList&lt;Cita&gt;): void&#xa;+ limpiarTodosDAT(): void&#xa;+ vincularReferenciasCitas(...): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-gestor-dat">
+          <mxGeometry y="26" width="305" height="199" as="geometry" />
+        </mxCell>
+
+        <!-- Pares Input / Output -->
+        <mxCell id="cls-cli-in" value="ClienteInput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="860" width="245" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cli-in-meth" value="+ abrir(): void&#xa;+ leer(): Cliente&#xa;+ cerrar(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-cli-in">
+          <mxGeometry y="26" width="245" height="69" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-cli-out" value="ClienteOutput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1455" y="860" width="245" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cli-out-meth" value="+ abrir(): void&#xa;+ escribir(Cliente): void&#xa;+ cerrar(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-cli-out">
+          <mxGeometry y="26" width="245" height="69" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-serv-in" value="ServicioInput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="985" width="245" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-serv-in-meth" value="+ abrir(): void&#xa;+ leer(): Servicio&#xa;+ cerrar(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-serv-in">
+          <mxGeometry y="26" width="245" height="69" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-serv-out" value="ServicioOutput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1455" y="985" width="245" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-serv-out-meth" value="+ abrir(): void&#xa;+ escribir(Servicio): void&#xa;+ cerrar(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-serv-out">
+          <mxGeometry y="26" width="245" height="69" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-vet-in" value="VeterinarioInput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="1110" width="245" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-vet-in-meth" value="+ abrir(): void&#xa;+ leer(): Veterinario&#xa;+ cerrar(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-vet-in">
+          <mxGeometry y="26" width="245" height="69" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-vet-out" value="VeterinarioOutput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1455" y="1110" width="245" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-vet-out-meth" value="+ abrir(): void&#xa;+ escribir(Veterinario): void&#xa;+ cerrar(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-vet-out">
+          <mxGeometry y="26" width="245" height="69" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-cita-in" value="CitaInput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="1235" width="245" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cita-in-meth" value="+ abrir(): void&#xa;+ leer(): Cita&#xa;+ cerrar(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-cita-in">
+          <mxGeometry y="26" width="245" height="69" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cls-cita-out" value="CitaOutput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1455" y="1235" width="245" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-cita-out-meth" value="+ abrir(): void&#xa;+ escribir(Cita): void&#xa;+ cerrar(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-cita-out">
+          <mxGeometry y="26" width="245" height="69" as="geometry" />
+        </mxCell>
+
+        <!-- Dependencias GestorDAT -> Input/Output -->
+        <mxCell id="dep-dat-1" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-dat" target="cls-cli-in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-dat-2" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-dat" target="cls-cli-out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-dat-3" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-dat" target="cls-serv-in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-dat-4" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-dat" target="cls-serv-out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-dat-5" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-dat" target="cls-vet-in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-dat-6" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-dat" target="cls-vet-out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-dat-7" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-dat" target="cls-cita-in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-dat-8" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-dat" target="cls-cita-out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- GestorImportExport -->
+        <mxCell id="cls-gestor-ie" value="GestorImportExport" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="1245" width="350" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="cls-gestor-ie-meth" value="+ exportarTodo(clientes, servicios, veterinarios, citas): void&#xa;+ importarTodo(clientes, servicios, veterinarios, citas): void&#xa;+ limpiarTodo(clientes, servicios, veterinarios, citas): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="cls-gestor-ie">
+          <mxGeometry y="26" width="350" height="89" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dep-ie-carg" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-ie" target="cls-cargador">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-ie-guard" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-ie" target="cls-guardador">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-ie-dat" value="" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;" edge="1" parent="1" source="cls-gestor-ie" target="cls-gestor-dat">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

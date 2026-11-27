@@ -1,6 +1,5 @@
 package Presentacion;
 
-import Conceptos.Servicio;
 import Conceptos.Veterinario;
 import Util.GestorDAT;
 import java.util.ArrayList;
@@ -27,14 +26,6 @@ public class VentanaVeterinarios extends javax.swing.JDialog {
         this.textFieldID.setEditable(false);
         this.textFieldID.setText(generarNuevoId());
         LlenarTabla();
-    }
-
-    /**
-     * Constructor temporal de compatibilidad mientras Escritorio se integra con Track B.
-     */
-    // TODO integración: eliminar este constructor temporal cuando Escritorio llame al nuevo constructor
-    public VentanaVeterinarios(java.awt.Frame parent, boolean modal, ArrayList<Veterinario> listaVeterinarios, ArrayList<Servicio> listaServicios) {
-        this(parent, modal, listaVeterinarios);
     }
 
     /**
